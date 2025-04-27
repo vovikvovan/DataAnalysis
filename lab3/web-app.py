@@ -15,16 +15,12 @@ df = load_data()
 
 if 'selected_index' not in st.session_state:
     st.session_state.selected_index = 'VCI'
-
 if 'selected_area' not in st.session_state:
     st.session_state.selected_area = df['region_name'].unique()[0]
-
 if 'selected_week' not in st.session_state:
     st.session_state.selected_week = None  # None на старті
-
 if 'selected_year' not in st.session_state:
     st.session_state.selected_year = None  # None на старті
-
 if 'sort_option' not in st.session_state:
     st.session_state.sort_option = 'Don\'t sort'
 
