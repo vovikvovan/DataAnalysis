@@ -2,12 +2,20 @@ import pandas as pd
 import streamlit as st
 import datetime
 import glob
+import os
 import altair as alt
 
 @st.cache_data
 def load_data():
     current_time = datetime.datetime.now().strftime('%Y-%m-%d')
-    file = glob.glob(f'cleaned_data_for_{current_time}_*.csv')
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    pattern = os.path.join(script_dir, f'cleaned_data_for_{current_time}_*.csv')
+    file = glob.glob(pattern)
+
+    if not file:
+        st.error(f"No data file found for {current_time}")
+        st.stop()
+
     return pd.read_csv(file[0])
 
 
